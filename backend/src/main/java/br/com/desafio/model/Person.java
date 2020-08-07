@@ -10,6 +10,8 @@ package br.com.desafio.model;
  * @author renatomori
  */
 public class Person {
+
+    private int id;
 //    Nome - obrigatório
 
     private String name;
@@ -20,6 +22,14 @@ public class Person {
 //Nacionalidade
 //CPF - obrigatório, deve ser validado (formato e não pode haver dois cadastros com mesmo cpf)
 //Obs: a data de cadastro e atualização dos dados devem ser armazenados.
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
