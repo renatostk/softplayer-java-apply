@@ -51,7 +51,7 @@ public class PersonController {
     //C
     @PostMapping
     @ResponseBody
-    public PersonEntity create(@RequestBody Person p) {
+    public PersonEntity create(@RequestBody Person p) throws Exception {
         PersonEntity pe = new PersonEntity();
         pe.fromPerson(p);
         pe.setInsertDate(new Date());
@@ -78,7 +78,7 @@ public class PersonController {
     @ResponseBody
     public PersonEntity update(
             @PathVariable Integer id,
-            @RequestBody Person p) {
+            @RequestBody Person p) throws Exception {
         PersonEntity pe = new PersonEntity();
         pe.setId(id);
         pe.fromPerson(p);
@@ -98,5 +98,11 @@ public class PersonController {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     ResponseEntity<String> handleConstraintViolationException(ConstraintViolationException e) {
         return new ResponseEntity<>("not valid due to validation error: " + e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+    
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    ResponseEntity<String> handleException(Exception e) {
+        return new ResponseEntity<>("error: " + e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }
