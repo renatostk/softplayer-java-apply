@@ -2,7 +2,6 @@ package br.com.desafio.validation;
 
 import br.com.desafio.entity.PersonEntity;
 import java.util.InputMismatchException;
-import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
@@ -34,7 +33,7 @@ public class ValidationService {
                 break;
             }
         }
-        if (i >= 11) {
+        if (i >= 11 || cpf.length() != 11) {
             return false;
         }
 
