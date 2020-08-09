@@ -1,0 +1,23 @@
+version: '3.5'
+services:
+  db:
+    build: database/docker
+    environment:
+      - POSTGRES_PASSWORD=passwd
+      - POSTGRES_USER=renatomori
+      - POSTGRES_DB=bd_app
+    ports:
+      - 5555:5432
+  backend:
+    build: backend
+    depends_on:
+      - db
+    ports:
+      - 8989:8080
+  frontend:
+    build: frontend
+    depends_on:
+      - backend
+    ports:
+      - 80:80
+  
