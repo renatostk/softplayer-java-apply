@@ -13,13 +13,16 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
 /**
  *
  * @author renatomori
  */
-@Data
+@Getter
+@Setter
 @Entity
 public class PersonEntity implements Serializable {
 
@@ -46,7 +49,6 @@ public class PersonEntity implements Serializable {
 
     //E-mail - não obrigatório, deve ser validado caso preenchido
     @NotNull
-    @Pattern(regexp = "(^$|^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+$)")
     private String email;
 
     //Data de Nascimento - obrigatório, deve ser validada
@@ -62,12 +64,7 @@ public class PersonEntity implements Serializable {
 
     //CPF - obrigatório, deve ser validado (formato e não pode haver dois cadastros com mesmo cpf)
     @Column(unique = true)
-    @Pattern(regexp = "[0-9]{3}\\.[0-9]{3}\\.[0-9]{3}-[0-9]{2}")
     private String cpf;
-
-    public Person toPerson() {
-        return new Person(name, sexo, email, birthday, naturalidade, nacionalidade, cpf);
-    }
 
     public void fromPerson(Person p) {
         if (p.getName() != null) {
