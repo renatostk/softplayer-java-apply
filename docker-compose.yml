@@ -2,7 +2,8 @@ version: '3.5'
 services:
 
   db:
-    build: database/docker
+    # build: database/docker
+    image: renatomori/softplayer_db:database
     environment:
       - POSTGRES_PASSWORD=passwd
       - POSTGRES_USER=renatomori
@@ -13,7 +14,8 @@ services:
       - database
 
   backend:
-    build: backend
+    # build: backend
+    image: renatomori/softplayer_back:backend
     depends_on:
       - db
     ports:
@@ -23,7 +25,8 @@ services:
       - database
 
   frontend:
-    build: frontend
+    # build: frontend
+    image: renatomori/softplayer_front:frontend
     depends_on:
       - backend
     ports:
