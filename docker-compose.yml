@@ -12,25 +12,25 @@ services:
     networks:
       - database
 
-  # backend:
-  #   build: backend
-  #   depends_on:
-  #     - db
-  #   ports:
-  #     - 8989:8080
-  #   networks:
-  #     - back
-  #     - database
+  backend:
+    build: backend
+    depends_on:
+      - db
+    ports:
+      - 8989:8080
+    networks:
+      - back
+      - database
 
-  # frontend:
-  #   build: frontend
-  #   depends_on:
-  #     - backend
-  #   ports:
-  #     - 80:80
-  #   networks:
-  #     - front
-  #     - back
+  frontend:
+    build: frontend
+    depends_on:
+      - backend
+    ports:
+      - 80:80
+    networks:
+      - front
+      - back
 
 networks:
   front:
